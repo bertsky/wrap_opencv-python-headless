@@ -1,5 +1,5 @@
-# wrap_opencv-python
-    rebrand opencv-python-headless
+# wrap_opencv-python-headless
+    rebrand opencv-python-headless as opencv-python
 
 ## Introduction
 
@@ -23,9 +23,11 @@ If you want to install [OpenCV](https://github.com/skvark/opencv-python.git) as 
 
 This creates a problem for dependent packages, though: Whatever OpenCV flavour you choose to depend on, your dependents will also rely on that particular choice. To make matters worse, `pip` does not consider these flavours as conflict when installed in parallel (despite all sharing the same submodule/subpackage name `cv2`).
 
-So practically, if you depend on several OpenCV-dependent packages, but want to avoid the X11 dependencies, _any_ of your dependencies could drag them back in if it chose to require `opencv-python` instead of `opencv-python-headless`.
+So practically, if you depend on some OpenCV-dependent packages, but want to avoid the X11 dependencies, _any_ of your dependencies could drag them back in if it chose to require `opencv-python` instead of `opencv-python-headless`.
 
-If however, you know for certain that none of them _actually_ need X11, and might thus easily have been chosen headless, then this package is for you. It merely re-brands `opencv-python-headless` as `opencv-python` by requiring the former but providing the latter in an otherwise empty package.
+If, however, you know for certain that none of them _actually_ need X11, and might thus easily have been chosen `headless`, then this package is for you. It merely re-brands `opencv-python-headless` as `opencv-python` by requiring the former but providing the latter in an otherwise empty package.
+
+You can install this package _prior_ to other dependencies and thus block any subsequent installation of the actual prebuilt `opencv-python`. (But to make this work including a mirrored version number, `opencv-python-headless` needs to be installed early, too. Thus, installing this package will also install `opencv-python-headless` if not already present.)
 
 ## Installation
 
